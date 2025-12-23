@@ -38,6 +38,11 @@ pipeline {
       }
       steps {
         script {
+            sh '''
+                        curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-24.0.5.tgz
+                        tar xzvf docker-24.0.5.tgz --strip 1 -C /usr/local/bin docker/docker
+                        rm docker-24.0.5.tgz
+            '''
 
             sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build -t ${DOCKER_IMAGE} .'
             def dockerImage = docker.image("${DOCKER_IMAGE}")
