@@ -10,6 +10,7 @@ pipeline {
       steps {
         sh 'echo passed'
         //git branch: 'main', url: 'https://github.com/wasiqmajeed/Jenkins-Zero-To-Hero.git'
+        checkout scm
       }
     }
     stage('Build and Test') {
