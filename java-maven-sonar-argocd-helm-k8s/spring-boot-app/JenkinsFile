@@ -24,10 +24,6 @@ pipeline {
         SONAR_URL = "http://3.66.170.189:9000/"
       }
 
-      tools { 
-        jdk 'jdk17'  // Make sure this name matches what is in Jenkins Global Tools
-        maven 'maven3'
-      }
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
           sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
