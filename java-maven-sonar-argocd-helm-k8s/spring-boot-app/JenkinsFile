@@ -62,6 +62,7 @@ pipeline {
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
+                    git config --global --add safe.directory '*'
                     git config user.email "progwasiq@gmail.com"
                     git config user.name "wasiqmajeed"
                     BUILD_NUMBER=${BUILD_NUMBER}
